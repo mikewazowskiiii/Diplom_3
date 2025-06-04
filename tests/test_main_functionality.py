@@ -14,14 +14,14 @@ class TestMainFunctionality:
         login = LoginPageBurger(driver)
         login.open_page_and_wait_visibility(DataUrl.BASE_URL + DataUrl.LOGIN_URL, LoginPageLocators.LOGIN_BUTTON)
         login.click_go_to_constructor()
-        assert driver.current_url == DataUrl.BASE_URL + DataUrl.CONSTRUCTOR
+        assert login.check_constructor_url()
 
     @allure.title("Переход по клику на «Лента заказов»")
     def test_go_to_feed_order(self, driver):
         main = MainPageBurger(driver)
         main.open_page_and_wait_visibility(DataUrl.BASE_URL, MainPageLocators.INGREDIENT_BUN)
         main.click_feed_order_and_wait()
-        assert driver.current_url == DataUrl.BASE_URL + DataUrl.FEED
+        assert main.check_feed_order_url()
 
     @allure.title("Если кликнуть на ингредиент, появится всплывающее окно с деталями")
     def test_open_ingredient(self, driver):

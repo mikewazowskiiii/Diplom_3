@@ -14,7 +14,7 @@ class TestRecoverPassword:
         login = LoginPageBurger(driver)
         login.open_page(DataUrl.BASE_URL + DataUrl.LOGIN_URL)
         login.click_recover_password_and_wait_clickable()
-        assert driver.current_url == DataUrl.BASE_URL + DataUrl.FORGOT_PASS
+        assert login.check_forgot_password_url()
 
     @allure.title("Ввод почты и клик по кнопке «Восстановить»")
     def test_go_to_reset_password(self, driver):
@@ -23,7 +23,7 @@ class TestRecoverPassword:
         login.open_page_and_wait_visibility(DataUrl.BASE_URL + DataUrl.LOGIN_URL, LoginPageLocators.LOGIN_BUTTON)
         login.click_recover_password_and_wait_clickable()
         forgot.entering_password_recovery_email()
-        assert driver.current_url == DataUrl.BASE_URL + DataUrl.RESET_PASS
+        assert forgot.check_reset_password_url()
 
     @allure.title("Клик по кнопке показать/скрыть пароль делает поле активным — подсвечивает его.")
     def test_click_eye_button(self, driver):
